@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="manomano_orders_tree_view" model="ir.ui.view">
+        <field name="name">manomano.orders.tree.view</field>
+        <field name="model">manomano.orders</field>
+        <field name="arch" type="xml">
+            <tree edit="false">
+                <field name="manomano_order_id"></field>
+                <field name="sku"></field>
+                <field name="order_status"></field>
+                <!-- <field name="shipping_method"></field> -->
+
+                <field name="order_id"/>
+                <!-- <button class="oe_stat_button" attrs="{'invisible': [('order_id','=',False)]}" string="Open Sale Order" name="open_sale_order" type="object" style="width: 1%">
+                        </button> -->
+                <!-- <label for="order_id"/>
+                        <div class="o_row">
+                            <field name="order_id"/>
+                            <button name="open_sale_order" type="object" string="Open Sale Order"/>
+                        </div> -->
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="manomano_search_view_search" model="ir.ui.view">
+        <field name="name">manomano_search.view.search</field>
+        <field name="model">manomano.orders</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <!-- <filter string="Shipped" name="filter_shipped" domain="[('order_status', '=', 'Shipped')]"/> -->
+                <filter name="group_status" string="Status" icon="terp-partner" context="{'group_by':'order_status'}"/>
+                <filter name="shop" string="shop" icon="terp-partner" context="{'group_by': 'shop_id'}"/>
+                <filter name="today" string="Today" icon="terp-partner" context="{'group_by': 'create_date:day'}"/>
+                <!-- <filter name="group_order_id" string="Cdiscount Order Id" icon="terp-partner" context="{'group_by':'cdiscount_order_id'}"/>  -->
+                <!-- <filter name="group_so" string="Sale Order" icon="terp-partner" context="{'group_by':'order_id'}"/>  -->
+            </search>
+        </field>
+    </record>
+
+    <record id="manomano_orders_view_form" model="ir.ui.view">
+        <field name="name">manomano.orders.form.view</field>
+        <field name="model">manomano.orders</field>
+        <field name="arch" type="xml">
+            <form string="" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group string="Order Details">
+                            <!-- <field name="name"></field> -->
+                            <field name="manomano_order_id"></field>
+                            <field name="order_id"></field>
+                            <!-- <field name="sku"></field> -->
+                            <field name="order_status"></field>
+
+                            <field name="order_date"></field>
+                            <!-- <field name="req_ship_date"></field> -->
+                            <!-- <field name="ship_method_code"></field> -->
+                            <field name="email"></field>
+                            <field name="carrier"></field>
+                            <field name="is_pdf"></field>
+                            <field name="reciept_code"></field>
+                            <field name="warehouse_id"></field>
+                            <field name="shop_id"></field>
+                            <field name="dni"></field>
+                            <field name="payment_ref"></field>
+                            <field name="con_gurantee"></field>
+
+                        </group>
+                        <group name="shipping" string="Delivery Data">
+                            <field name="shipping_method"></field>
+                            <field name="ship_date"></field>
+                            <field name="shipping_zip"></field>
+                            <field name="delivery_country"></field>
+                            <field name="delivery_city"></field>
+                            <field name="shipping_address"></field>
+                            <field name="shipping_company"></field>
+                            <field name="shipping_address2"></field>
+                            <field name="shipping_address3"></field>
+                            <field name="shipping_state"></field>
+
+                        </group>
+                        <hr/>
+                        
+                          </group>
+                          <group>
+                            <group string="Product Details">
+                                <field name="product_ref"></field>
+                                <field name="product_name"></field>
+                                <field name="quantity"></field>
+                                <field name="unit_price"></field>
+                                <!-- <field name="full_name"></field> -->
+                                <field name="total_price"></field>
+                                <field name="delivery_cost"></field>
+                                <field name="first_name"></field>
+                                <field name="last_name"></field>
+                                <field name="phone"></field>
+                                <field name="line_id" invisible="1"></field>
+
+                            </group>
+                            <group name="billing" string="Billing Data">
+                                <field name="first_name_billing"></field>
+                                <field name="billing_company"></field>
+                                <field name="billing_zip"></field>
+                                <field name="billing_city"></field>
+                                <field name="phone_billing"></field>
+                                <field name="billing_country"></field>
+                                <field name="name_billing"></field>
+                                <field name="billing_add1"></field>
+                                <field name="billing_add2"></field>
+                                <field name="billing_add3"></field>
+                            </group>
+                        
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.server" id="action_create_sale_oreders">
+        <field name="name">Map Sale Orders</field>
+        <field name="model_id" ref="model_manomano_orders"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="binding_model_id" ref="model_manomano_orders"/>
+        <field name="state">code</field>
+        <field name="code">
+           action = records.map_sale_orders()
+        </field>
+    </record>
+
+</odoo>

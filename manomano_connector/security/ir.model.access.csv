@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_seller_manomano,manomano_connector.manomano.seller,model_manomano_seller,base.group_user,1,1,1,1
+access_seller_manomano_orders,manomano_connector.manomano.orders,model_manomano_orders,base.group_user,1,1,1,1
+

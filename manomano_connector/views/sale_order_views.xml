@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sale_cdiscount_view_form" model="ir.ui.view">
+        <field name="name">sale_cdiscount.view.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"></field>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="manomano_order_id"></field>
+                <!-- attrs="{'invisible': [('manomano_order_id','=',False)]}" -->
+            </field>
+            <xpath expr="//page[@name='other_information']"  position="after">
+            <page name="manomano_page" string="ManoMano">
+                <!-- attrs="{'invisible': [('manomano_order_id','=',False)]}"> -->
+                <group>
+                    <group>
+                        <field name="manomano_order_id"></field>
+                        <field name="order_status"></field>
+                        <field name="carrier"></field>
+                        <field name="shipping_method"></field>
+                        <field name="shipping_zip"></field>
+                        <field name="delivery_city"></field>
+                        <field name="delivery_country"></field>
+                        <field name="total_price"></field>
+                        <field name="delivery_cost"></field>
+                        <field name="payment_ref"></field>
+                        
+
+                    </group>
+                    <group>
+                        <field name="first_name"></field>
+                        <field name="last_name"></field>
+                        <field name="email"></field>
+                        <!-- <field name="order_date"></field> -->
+                        <!-- <field name="req_ship_date"></field> -->
+                        <field name="ship_method_code"></field>
+                        <field name="shipping_address2"></field>
+                        <field name="shipping_address3"></field>
+                        <field name="shipping_state"></field>
+                        <field name="tracking_id"></field>
+                        <field name="ship_date"></field>
+                        <field name="phone"></field>
+                    </group>
+                </group>
+                <hr/>
+                <group>
+                    <group>
+                        <field name="status"/>
+                        <field name="total_price_amount"/>
+                        <field name="total_price_currency"/>
+                        <field name="total_price_vat_amount"/>
+                        <field name="total_price_vat_currency"/>
+                        <field name="shipping_price_vat_rate"/>
+                        <field name="products_price_amount"/>
+                        <field name="products_price_currency"/>
+                        <field name="products_price_excluding_vat_amount"/>
+                        <field name="products_price_excluding_vat_currency"/>
+                        <field name="products_price_vat_amount"/>
+                        <field name="products_price_vat_currency"/>
+
+
+
+                    </group>
+                    <group>
+                        <field name="manomano_discount_amount"></field>
+                        <field name="seller_discount_currency"></field>
+                        <field name="seller_contract_id"></field>
+                        <field name="order_reference"></field>
+                        <field name="shipping_discount_amount"></field> 
+                        <field name="shipping_discount_currency"></field>
+                        <field name="created_at"></field>
+                        <field name="status_updated_at"></field>
+                        <field name="total_discount"></field>
+                        <field name="customer_firstname"></field>
+                        <field name="customer_lastname"></field>
+                        <field name="is_mmf"></field>
+                        <field name="is_professional"></field>
+                        <field name="billing_fiscal_number"></field>
+
+                    </group>
+
+                </group>
+                
+            </page>
+            
+        </xpath>
+        </field>
+        
+
+    </record>
+
+    <record id="sale_order_line_inh" model="ir.ui.view">
+        <field name="name">sale.order.line.inh</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree"></field>
+        <field name="arch" type="xml">
+            <field name="qty_invoiced" position="after">
+                <field name="line_id"></field>
+            </field>
+        </field>
+    </record>
+
+
+</odoo>

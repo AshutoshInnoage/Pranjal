@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record id="manomano_seller_view_form" model="ir.ui.view">
+    <field name="name">manomano.seller.form.view</field>
+    <field name="model">manomano.seller</field>
+    <field name="arch" type="xml">
+        <form string="Seller Information">
+            <header>
+                <button name="process_shipping_orders" string="Export Shipping Orders" type="object" class="btn btn-primary rounded shadow"/>
+
+            </header>
+            <sheet>
+
+            <div class="oe_button_box" name="button_box">
+                            <button name="action_view_cdiscount_sale_order" string="Import Orders" type="object" class="oe_stat_button" icon="fa-usd" >
+                            </button>
+                            <button name="action_view_sale_orders" type="object" string="Sale Orders"  class="oe_stat_button" icon="fa-cubes" >
+                                
+                            </button>
+                        </div>
+                <group>
+                    <group>
+                        <field name="name"></field>
+                        <field name="warehouse_id"></field>
+                    </group>
+                    <group>
+                        <field name = "activate"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page name="config" string="Configuration" groups="base.group_system">
+                        <group>
+                            <field name="api_key"/>
+                            <field name="seller_contract_id"/>
+                            <field name="geting_url"/>
+
+                        <!-- <field name="seller_token" force_save="true" ></field>
+                        <field name="test_token" invisible="1"></field> -->
+
+                        </group>
+
+                    </page>
+                    <page groups = "base.group_no_one" name = "orders" string= "Order Management" >
+                        <!-- attrs="{'invisible': [('activate', '=',False)]}"> -->
+                        
+                        <group>
+                            <group> 
+                                <button name="get_all_orders" string="Get ALL Orders" type="object" class="btn btn-primary rounded shadow" />
+                                <!-- attrs="{'invisible': [('is_filter_activate', '=',True)]}" -->
+                                <button name="get_orders" string="Get Orders" type="object" class="btn btn-primary rounded shadow"/>
+                                
+                            </group>
+                            <group>
+
+                                <field name="is_filter_activate"/>
+                            </group>
+                            
+                            
+                            
+                            
+                        </group>
+
+                        <group>
+                            <group> 
+                                <field name = "seller_contract_id" attrs="{'invisible': [('is_filter_activate', '=',True)]}"/>
+                                <field name = "order_reference" attrs="{'invisible': [('is_filter_activate', '=',True)]}"/>
+                                <field name = "status" attrs="{'invisible': [('is_filter_activate', '=',True)]}"/>
+                                <field name = "carrier" attrs="{'invisible': [('is_filter_activate', '=',True)]}"/>
+                                <field name = "created_at_start" attrs="{'invisible': [('is_filter_activate', '=',True)]}"/>
+                            </group>
+                            <group>
+                                
+                                <field name = "created_at_end" attrs="{'invisible': [('is_filter_activate', '=',True)]}"/>
+                                <field name = "status_updated_at_start" attrs="{'invisible': [('is_filter_activate', '=',True)]}"/>
+                                <field name = "status_updated_at_end" attrs="{'invisible': [('is_filter_activate', '=',True)]}"/>
+                                <field name = "limit" attrs="{'invisible': [('is_filter_activate', '=',True)]}"/>
+                                <field name = "page" attrs="{'invisible': [('is_filter_activate', '=',True)]}"/>
+                            </group>
+                        </group>
+                    </page>
+
+
+                </notebook>
+                
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<record id="manomano_seller_view_kanban" model="ir.ui.view">
+    <field name="name">manomano_seller.view.kanban</field>
+    <field name="model">manomano.seller</field>
+    <field name="arch" type="xml">
+        <kanban>
+            <!-- <field name="state"></field> -->
+            <field name="name"></field>
+            <field name="seller_id"></field>
+            <field name="seller_token"></field>
+             <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click shadow rounded border-light">
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title">
+                                    <field name="name"/>
+                                    </strong>
+                                <div t-if="record.seller_id.value">
+                                        <t t-esc="record.seller_id.value"/>
+                                </div>
+                                    <div t-if="record.seller_token.value">
+                                        <t t-esc="record.seller_token.value"/>
+                                </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+        </kanban>
+    </field>
+</record>
+
+<record id="action_manomano_seller_form" model="ir.actions.act_window" >
+    <field name="name">Seller</field>
+    <field name="res_model">manomano.seller</field>
+    <field name="view_mode">kanban,form,tree</field>
+</record>
+
+<menuitem
+    id="manomano_root_shop"
+    name="ManoMano"
+    parent="odoo_mirakl_integration.menu_multiple_shops"
+    action="action_manomano_seller_form"
+    sequence="100"/>   
+
+</odoo>
