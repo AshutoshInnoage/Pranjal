@@ -17,7 +17,7 @@ response={'content': [
         'products_price_vat': {'amount': 11.66, 'currency': 'EUR'},
         'manomano_discount': {'amount': 0, 'currency': 'EUR'},
         'seller_discount': None,
-        'order_reference': 'M230356339460',
+        'order_reference': 'uyfytfuyi',
         'shipping_discount': {'amount': 0, 'currency': 'EUR'},
         'products': [{
             'quantity': 1,
@@ -63,8 +63,7 @@ response={'content': [
             }, 
             'billing': {
                 'phone': '+33669617193',
-                'email': 'm_daeedeci3fgddjega2cfaaacfb1@message.manomano.com'
-                    ,
+                'email': 'm_daeedeci3fgddjega2cfaaacfb1@message.manomano.com',
                 'firstname': 'Sophie',
                 'lastname': 'HAMON',
                 'company': '',

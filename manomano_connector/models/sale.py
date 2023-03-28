@@ -29,20 +29,20 @@ class SaleOrder(models.Model):
     order_id = fields.Many2one('sale.order',"Sale Order")
     sku = fields.Char('SKU')
     warehouse = fields.Char('Warehouse Code')
-
+    manomano_shop_id = fields.Many2one("manomano.seller", "Manomano Shop")
 
     #sale manomano fields
     status = fields.Selection([
-        ('pending','Pending'),
-        ('waiting','Wating Period'),
-        ('refused','Refused'),
-        ('shipped','Shipped'),
-        ('preparation','Preparation'),
-        ('refunded','Refunded'),
-        ('refunding','Refunding'),
-        ('remorse_period','Remorse Period'),
-
+        ('PENDING','Pending'),
+        ('WAITING_PAYMENT','Waiting Period'),
+        ('REFUSED','Refused'),
+        ('PREPARATION','Preparation'),
+        ('SHIPPED','Shipped'),
+        ('REFUNDED','Refunded'),
+        ('REFUNDING','Refunding'),
+        ('REMORSE_PERIOD','Remorse Period'),
     ])
+   
     
     total_price_amount = fields.Float(" Price Amount")
     total_price_currency = fields.Char("Price Currency")
@@ -58,6 +58,8 @@ class SaleOrder(models.Model):
     products_price_vat_amount = fields.Float("Product  vat amount")
     products_price_vat_currency = fields.Char("Product vat currency")
     manomano_discount_amount = fields.Float("Discount amount")
+    manomano_discount_currency = fields.Char("Discount Currency")
+
     seller_discount_currency = fields.Char()
     seller_contract_id = fields.Char("Seller Id")
     order_reference = fields.Char("Order Refrence")
@@ -72,43 +74,9 @@ class SaleOrder(models.Model):
     is_mmf = fields.Char("")
     is_professional = fields.Char("")
     billing_fiscal_number = fields.Char("")
-   # products = 
-    #vat_rate =
-    #shipping_vat_rate =
-    #carrier =
-    # seller_sku =
-    # price =
-    # price_excluding_vat =
-    # title =
-    # shipping_price =
-    # sum_shipping_price = 
-    # shipping_price_excluding_vat =
-    # product_price =
-    # product_price_excluding_vat = 
-    # total_price = 
-    # total_price_excluding_vat =
-    # product_title =
-    
-
-
-    #addresses
-    #shipping
-    # phone = 
-    # email =
-    # firstname = 
-    # lastname = 
-    # company = 
-    # address_line1 = 
-    # city = 
-    # zipcode = 
-    # country = 
-    # country_iso = 
-            
-
+ 
 
     
-
-
 
 
 
@@ -142,3 +110,4 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     line_id = fields.Char("Line Id")
+    # manomano

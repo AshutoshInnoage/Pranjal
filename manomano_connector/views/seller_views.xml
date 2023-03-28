@@ -27,6 +27,7 @@
                         <field name = "activate"/>
                     </group>
                 </group>
+                
                 <notebook>
                     <page name="config" string="Configuration" groups="base.group_system">
                         <group>
@@ -40,41 +41,32 @@
                         </group>
 
                     </page>
-                    <page groups = "base.group_no_one" name = "orders" string= "Order Management" >
-                        <!-- attrs="{'invisible': [('activate', '=',False)]}"> -->
+                    <page groups = "base.group_no_one" name = "orders" string= "Order Management" attrs="{'invisible': [('activate', '=',False)]}">
+                    
                         
                         <group>
-                            <group> 
+                            <group attrs="{'invisible': [('is_filter_activate', '=',True)]}"> 
                                 <button name="get_all_orders" string="Get ALL Orders" type="object" class="btn btn-primary rounded shadow" />
-                                <!-- attrs="{'invisible': [('is_filter_activate', '=',True)]}" -->
-                                <button name="get_orders" string="Get Orders" type="object" class="btn btn-primary rounded shadow"/>
-                                
+                            </group>
+                            <group attrs="{'invisible': [('is_filter_activate', '=',False)]}"> 
+                                <button name="get_all_orders" string="Get Orders" type="object" class="btn btn-primary rounded shadow" />
                             </group>
                             <group>
-
                                 <field name="is_filter_activate"/>
                             </group>
-                            
-                            
-                            
-                            
                         </group>
-
                         <group>
                             <group> 
-                                <field name = "seller_contract_id" attrs="{'invisible': [('is_filter_activate', '=',True)]}"/>
-                                <field name = "order_reference" attrs="{'invisible': [('is_filter_activate', '=',True)]}"/>
-                                <field name = "status" attrs="{'invisible': [('is_filter_activate', '=',True)]}"/>
-                                <field name = "carrier" attrs="{'invisible': [('is_filter_activate', '=',True)]}"/>
-                                <field name = "created_at_start" attrs="{'invisible': [('is_filter_activate', '=',True)]}"/>
+                                <field name = "order_reference" attrs="{'invisible': [('is_filter_activate', '=',False)]}"/>
+                                <field name = "manomano_status" attrs="{'invisible': [('is_filter_activate', '=',False)]}"/>
+                                <field name = "carrier" attrs="{'invisible': [('is_filter_activate', '=',False)]}"/>
                             </group>
                             <group>
-                                
-                                <field name = "created_at_end" attrs="{'invisible': [('is_filter_activate', '=',True)]}"/>
-                                <field name = "status_updated_at_start" attrs="{'invisible': [('is_filter_activate', '=',True)]}"/>
-                                <field name = "status_updated_at_end" attrs="{'invisible': [('is_filter_activate', '=',True)]}"/>
-                                <field name = "limit" attrs="{'invisible': [('is_filter_activate', '=',True)]}"/>
-                                <field name = "page" attrs="{'invisible': [('is_filter_activate', '=',True)]}"/>
+                                <field name = "created_at_start" attrs="{'invisible': [('is_filter_activate', '=',False)]}"/>
+                                <field name = "created_at_end" attrs="{'invisible': [('is_filter_activate', '=',False)]}"/>
+                                <field name = "status_updated_at_start" attrs="{'invisible': [('is_filter_activate', '=',False)]}"/>
+                                <field name = "status_updated_at_end" attrs="{'invisible': [('is_filter_activate', '=',False)]}"/>
+                                <field name = "limit" attrs="{'invisible': [('is_filter_activate', '=',False)]}" readonly= "1"/>
                             </group>
                         </group>
                     </page>
